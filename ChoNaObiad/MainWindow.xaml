@@ -1,0 +1,38 @@
+﻿<Controls:MetroWindow
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:ChoNaObiad"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:ViewModel="clr-namespace:ChoNaObiad.ViewModel" 
+        x:Class="ChoNaObiad.MainWindow"
+        mc:Ignorable="d"
+        Title="Cho Na Obiad" Height="350" Width="525">
+    <Controls:MetroWindow.Resources>
+        <sys:Double x:Key="MaxWidth">525</sys:Double>
+    </Controls:MetroWindow.Resources>
+    <Grid>
+        <Grid.DataContext>
+            <ViewModel:MainViewModel/>
+        </Grid.DataContext>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="70"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="button" Grid.Row="2" Grid.Column="1" Command="{Binding AcceptMessageCommand}" Content="Odbierz wiadomość!" HorizontalAlignment="Center" VerticalAlignment="Center" Width="126"/>
+        <TextBox x:Name="textBox" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" Text="{Binding ReceivedMessage}" VerticalAlignment="Center" Width="200"/>
+        <Label x:Name="label" Grid.Column="1" Grid.Row="0" Content="Wybierz urządzenie, a następnie kliknij przycisk i oczekuj na odbiór wiadomości!" HorizontalAlignment="Center" VerticalAlignment="Center"   />
+        <TextBox x:Name="textBox_Copy" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" Text="Wprowadź adres IP urządzenia..." VerticalAlignment="Bottom" Width="200"/>
+        <TextBlock x:Name="textBlock" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="(Ewentualnie wybierz adres rozgłoszeniowy sieci, wtedy roześlę to do wszystkich urządzeń w sieci...)" VerticalAlignment="Bottom" Width="270"/>
+        <Label x:Name="statusbar" Content="{Binding StatusbarMsg, Mode=TwoWay}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" Height="70" VerticalAlignment="Bottom" Width="{StaticResource MaxWidth}"/>
+
+    </Grid>
+</Controls:MetroWindow>
